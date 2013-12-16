@@ -21,6 +21,7 @@
 #include "logo.h"
 #include "globals.h"
 #include <stdarg.h>
+#include <stdint.h>
 
 int print_stringlen;
 char *print_stringptr;
@@ -251,10 +252,10 @@ void real_print_node(FILE *strm, NODE *nd, int depth, int width) {
 	print_char(strm,']');
     } else if (nd == UNBOUND) {
 	ndprintf(strm, "%s", theName(Name_nothing));
-    } else if ((unsigned int)nd < 200) {    /* for debugging */
+    } else if ((intptr_t)nd < 200) {    /* for debugging */
 	char num[] = "{small}    ";
 
-	sprintf(&num[7],"%d",nd);
+	sprintf(&num[7],"%p",nd);
 	ndprintf(strm,num);
     } else if ((ndty = nodetype(nd)) & NT_PRIM) {
 	ndprintf(strm, "PRIM");
@@ -281,7 +282,7 @@ void real_print_node(FILE *strm, NODE *nd, int depth, int width) {
 	if (print_backslashes && (getarrorg(nd) != 1)) {
 	    char org[] = "@	";
 
-	    sprintf(&org[1],"%d",getarrorg(nd));
+	    sprintf(&org[1],"%ld",getarrorg(nd));
 	    ndprintf(strm,org);
 	}
     } else if (ndty == QUOTE) {

@@ -1576,7 +1576,7 @@ NODE *ledit(NODE *args) {
 #endif
 #else	/* !ibm (so unix) */
     if (fork() == 0) {
-	execlp(editor, editorname, tmp_filename, 0);
+	execlp(editor, editorname, tmp_filename, (char *)0);
 	exit(1);
     }
     wait(0);
@@ -1714,7 +1714,7 @@ NODE *cpdf_newname(NODE *name, NODE*titleline) {
     p1 = p1+strspn(p1, " \t");
     p2 = p1+strcspn(p1, " \t");
     sprintf(buf, "%.*s%.*s%s",
-	    p1-titlestr, titlestr, getstrlen(nname), namestr, p2);
+	    (int)(p1-titlestr), titlestr, (int)getstrlen(nname), namestr, p2);
     return make_strnode(buf, NULL, strlen(buf), STRING, strcpy);
 }
 
