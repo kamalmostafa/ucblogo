@@ -1371,7 +1371,8 @@ if eval "test \"`echo '$ac_cv_lib_'$ac_lib_var`\" = yes"; then
 #define $ac_tr_lib 1
 EOF
 
-  LIBS="-lbsd $LIBS"
+### Do not force -lbsd
+#LIBS="-lbsd $LIBS"
 
 else
   echo "$ac_t""no" 1>&6
