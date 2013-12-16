@@ -87,9 +87,6 @@ typedef struct { int dummy; } pen_info;
 #define fmod(x,y) x
 #define set_list_pen_pattern(p) nop()
 
-#define prepare_to_draw_turtle nop();
-#define done_drawing_turtle nop();
-
 extern int pw, ph, pc, pm, pv, px, py, bg;
 extern void nop();
 
