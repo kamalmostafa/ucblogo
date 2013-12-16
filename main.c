@@ -345,6 +345,10 @@ int main(int argc, char *argv[]) {
 		exec_list = parser(current_line, TRUE);
 		if (exec_list != NIL) eval_driver(exec_list);
 	    }
+
+#if defined(WITH_OPENLASE)
+	    openlase_render();
+#endif
 	}
 #ifdef HAVE_WX
 	if (wx_leave_mainloop) {

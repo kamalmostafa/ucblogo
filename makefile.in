@@ -11,18 +11,26 @@ LINKER = @LINKER@
 # LIBLOC      = `pwd`
 
 ### for X
-CFLAGS += @X_CFLAGS@
-LIBS   += @X_PRE_LIBS@ @X_LIBS@ @LIBS@ @X_EXTRA_LIBS@
+#CFLAGS += @X_CFLAGS@
+#LIBS   += @X_PRE_LIBS@ @X_LIBS@ @LIBS@ @X_EXTRA_LIBS@
+
+### for OpenLase
+CPPFLAGS += -DX_DISPLAY_MISSING
+CPPFLAGS += -DWITH_OPENLASE -I/home/kamal/src/laser/openlase/include
+LIBS += /home/kamal/src/laser/openlase/libol/libopenlase.so
+LIBS += -ltermcap -lm
 
 OBJS 	= coms.o error.o eval.o files.o graphics.o init.o intern.o \
 	  libloc.o lists.o logodata.o main.o math.o mem.o paren.o parse.o \
-	  print.o wrksp.o nographics.o svn.o @WXOFILES@ @TERMOFILE@ @GRAPHICSOFILE@
+	  print.o wrksp.o nographics.o svn.o openlasegraphics.o \
+	  @WXOFILES@ @TERMOFILE@ @GRAPHICSOFILE@
 
 SRCS	= coms.c error.c eval.c files.c graphics.c init.c intern.c \
 	  libloc.c lists.c logodata.c main.c math.c mem.c paren.c parse.c \
-	  print.c wrksp.c nographics.c @WXSRCFILES@ @TERMFILE@ @GRAPHICSFILE@
+	  print.c wrksp.c nographics.c openlasegraphics.c \
+	  @WXSRCFILES@ @TERMFILE@ @GRAPHICSFILE@
 
-HDRS	= globals.h logo.h xgraphics.h
+HDRS	= globals.h logo.h xgraphics.h openlasegraphics.h
 
 logo:	$(OBJS)
 	$(LINKER) $(CFLAGS) $(LDFLAGS) $(OBJS) $(LIBS) -o logo

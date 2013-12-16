@@ -407,6 +407,10 @@ NODE *lwait(NODE *args) {
     extern void ProcessEvent(void);
 #endif
 
+#if defined(WITH_OPENLASE)
+    openlase_render();
+#endif
+
     num = pos_int_arg(args);
     if (NOT_THROWING) {
       /*#ifdef HAVE_WX

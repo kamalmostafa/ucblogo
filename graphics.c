@@ -41,13 +41,15 @@
 #include "xgraphics.h"
 #elif defined(ibm)
 #include "ibmterm.h"
+#elif defined(WITH_OPENLASE)
+#include "openlasegraphics.h"
 #else
 #include "nographics.h"
 #endif /* end this whole big huge tree */
 
 #include "globals.h"
 
-#ifdef HAVE_WX
+#if defined(HAVE_WX) || defined(WITH_OPENLASE)
 int drawToPrinter=0;
 int turtlePosition_x=0;
 int turtlePosition_y=0;
@@ -154,7 +156,7 @@ void draw_turtle(void) {
     int old_color=pen_color;
     int save_vis;
 
-#ifdef HAVE_WX
+#if defined(HAVE_WX) || defined(WITH_OPENLASE)
     if (drawToPrinter) return;
 #endif
 

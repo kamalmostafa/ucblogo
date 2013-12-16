@@ -1,7 +1,7 @@
 
 /* A dummy graphics implementation for Unix */
 
-#ifdef X_DISPLAY_MISSING
+#if defined(X_DISPLAY_MISSING) && !defined(WITH_OPENLASE)
 
 int pw, ph, pc, pm, pv, px, py, bg;
 
